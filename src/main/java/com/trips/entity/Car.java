@@ -63,7 +63,7 @@ public class Car implements java.io.Serializable {
 		this.carId = carId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "driver_id", nullable = false)
 	public Driver getDriver() {
 		return this.driver;
@@ -109,7 +109,7 @@ public class Car implements java.io.Serializable {
 		this.licensePlate = licensePlate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+	@OneToMany(mappedBy = "car")
 	public Set<WeekSchedule> getWeekSchedules() {
 		return this.weekSchedules;
 	}
@@ -118,7 +118,7 @@ public class Car implements java.io.Serializable {
 		this.weekSchedules = weekSchedules;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+	@OneToMany(mappedBy = "car")
 	public Set<Bill> getBills() {
 		return this.bills;
 	}
@@ -127,7 +127,7 @@ public class Car implements java.io.Serializable {
 		this.bills = bills;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+	@OneToMany(mappedBy = "car")
 	public Set<ScheduleControl> getScheduleControls() {
 		return this.scheduleControls;
 	}

@@ -3,6 +3,7 @@ package com.trips.dao;
 import java.util.List;
 
 import com.trips.entity.Car;
+import org.hibernate.Query;
 
 public interface CarDao {
 	
@@ -15,5 +16,7 @@ public interface CarDao {
 	public Car getCarById(int id);
 	
 	public void removeCar(int id);
+
+	public Query getQuery();
 	
 }

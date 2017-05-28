@@ -1,12 +1,14 @@
 package com.trips.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.trips.entity.WeekSchedule;
+import org.hibernate.Query;
 
 public interface WeekScheduleDao {
 	
-	public void addWeekSchedule(WeekSchedule weekSchedule);
+	public void saveWeekSchedule(WeekSchedule weekSchedule);
 	
 	public void updateWeekSchedule(WeekSchedule weekSchedule);
 	
@@ -15,5 +17,9 @@ public interface WeekScheduleDao {
 	public WeekSchedule getWeekScheduleById(int id);
 	
 	public void removeWeekSchedule(int id);
+
+	public Query getQuery();
+
+	public Map<Integer, List<WeekSchedule>> getWeekSchedule();
 	
 }

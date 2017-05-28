@@ -8,7 +8,7 @@
 			<!--<div class="bar1"></div>--> <!--<div class="bar2"></div>--> <!--<div class="bar3"></div>-->
 			<!--</div>--> <!--<span class="glyphicon glyphicon-home"></span>--> <span
 			style="font-size: 30px; cursor: pointer" class="toggle-open">&#9776;
-				open</span> <a href="<c:url value="/"/>"><span>Trips Management System</span></a>
+				Menu</span> <a href="<c:url value="/"/>"><span>Trips Management System</span></a>
 		</div>
 	</div>
 	<div class="admin pull-right flex">
@@ -96,8 +96,8 @@
 						class="glyphicon glyphicon-chevron-down gl-right"></span>
 				</div>
 				<ul class="child-menu">
-					<li><a href="#">Lịch chạy</a></li>
-					<li><a href="#">Lịch chạy tuần</a></li>
+					<li><a href="<c:url value="/admin/week-schedule/list" />">Lịch chạy tuần</a></li>
+					<li><a href="#">Lịch chạy </a></li>
 				</ul>
 			</li>
 			<li>

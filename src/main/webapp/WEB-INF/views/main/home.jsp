@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.trips.util.DateTimeUtils"%>
+<%@ page import="com.trips.util.DateTimeUtil"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>

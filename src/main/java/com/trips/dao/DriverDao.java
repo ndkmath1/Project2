@@ -6,7 +6,8 @@ import com.trips.entity.Driver;
 import com.trips.model.DriverForm;
 
 public interface DriverDao {
-	public void addDriver(Driver driver);
+
+	public void saveDriver(Driver driver);
 	
 	public void updateDriver(Driver driver);
 	
@@ -15,10 +16,6 @@ public interface DriverDao {
 	public Driver getDriverById(int id);
 	
 	public void removeDriver(int id);
-	//code tiep
-	public Driver findDriver(int id);
-	public void saveDriver(DriverForm driverForm);
-	public DriverForm findDriverForm(int id);
-	public void deleteDriver(int id);
+
 	
 }

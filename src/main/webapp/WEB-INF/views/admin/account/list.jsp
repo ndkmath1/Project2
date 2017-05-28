@@ -97,19 +97,19 @@
 										<c:set var="count" value="${0}" scope="page" />
 									</c:if>
 									<c:forEach items="${requestScope.paging.resultList}"
-										var="resultList">
+										var="account">
 										<tr>
 											<c:set var="count" value="${count + 1}" />
 											<td>${count}</td>
-											<td>${resultList.email}</td>
-											<td>${resultList.name}</td>
-											<td>${resultList.phoneNumber}</td>
-											<td>${resultList.address}</td>
+											<td>${account.email}</td>
+											<td>${account.name}</td>
+											<td>${account.phoneNumber}</td>
+											<td>${account.address}</td>
 											<td><a
-												href="<c:url value="/admin/account/${resultList.accountId}/edit"/>"><span
+												href="<c:url value="/admin/account/${account.accountId}/edit"/>"><span
 													class="glyphicon glyphicon-pencil"></span></a></td>
 											<td><a
-												href="<c:url value="/admin/account/${resultList.accountId}/delete"/>"
+												href="<c:url value="/admin/account/${account.accountId}/delete"/>"
 												onclick="return confirm('Bạn muốn xóa tài khoản có id là ${account.accountId}')"><span
 													class="glyphicon glyphicon-trash"></span></a></td>
 										</tr>

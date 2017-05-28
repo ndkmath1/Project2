@@ -12,15 +12,17 @@ import org.springframework.stereotype.Repository;
 import com.trips.dao.DriverDao;
 import com.trips.entity.Driver;
 import com.trips.model.DriverForm;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+//@Transactional("hibernateTransactionManager")
 public class DriverDaoImpl implements DriverDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void addDriver(Driver driver) {
+	public void saveDriver(Driver driver) {
 		Session session = sessionFactory.getCurrentSession();
 		session.persist(driver);
 		
@@ -46,11 +48,7 @@ public class DriverDaoImpl implements DriverDao {
 	@Override
 	public Driver getDriverById(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Driver driver = (Driver) session.load(Driver.class, new Integer(id));
-		/*if(driver != null){
-			session.delete(driver);
-		}*/
-		return driver;
+		return session.load(Driver.class, id);
 	}
 
 	@Override
@@ -60,56 +58,7 @@ public class DriverDaoImpl implements DriverDao {
 		if(driver != null){
 			session.delete(driver);
 		}
-				
-		
 	}
 
-	//code tiep theo o7planing
-	@Override
-	public Driver findDriver(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		Criteria crit = session.createCriteria(Driver.class);
-		crit.add(Restrictions.eq("id", id));
-		return (Driver) crit.uniqueResult();
-	}
-
-	@Override
-	public void saveDriver(DriverForm driverForm) {
-		int id = driverForm.getId();
-		Driver driver = null;
-		if (id != 0){
-			driver = this.findDriver(id);
-		}
-		boolean isNew = false;
-		if(driver == null){
-			isNew = true;
-			driver = new Driver();
-			driverForm.setId(100);
-		}
-		driver.setDriverName(driverForm.getName());
-		driver.setPhoneNumber(driverForm.getPhoneNumber());
-		if(isNew){
-			Session session = this.sessionFactory.getCurrentSession();
-			session.persist(driver);
-		}
-	}
-
-	@Override
-	public DriverForm findDriverForm(int id) {
-		Driver driver = this.findDriver(id);
-		if(driver == null){
-			return null;
-		}
-		return new DriverForm(driver.getDriverId(), driver.getDriverName(), driver.getPhoneNumber());
-	}
-
-	@Override
-	public void deleteDriver(int id) {
-		Driver driver = this.findDriver(id);
-		if(driver != null){
-			this.sessionFactory.getCurrentSession().delete(id);
-		}
-		
-	}
 
 }

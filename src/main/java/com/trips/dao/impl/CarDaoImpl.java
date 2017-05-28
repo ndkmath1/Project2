@@ -2,17 +2,22 @@ package com.trips.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.trips.dao.CarDao;
 import com.trips.entity.Car;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+//@Transactional
+//@Qualifier("hibernateTransactionManager")
 public class CarDaoImpl implements CarDao {
 	
 	//private static final Logger logger = LoggerFactory.getLogger(CarDaoImpl.class);
@@ -61,5 +66,10 @@ public class CarDaoImpl implements CarDao {
 		}
 		//logger.info("Car deleted successfully, {}", car);
 	}
-	
+
+	@Override
+	public Query getQuery() {
+		return sessionFactory.getCurrentSession().createQuery("from Car");
+	}
+
 }

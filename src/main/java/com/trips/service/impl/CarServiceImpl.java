@@ -2,7 +2,9 @@ package com.trips.service.impl;
 
 import java.util.List;
 
+import com.trips.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +13,8 @@ import com.trips.entity.Car;
 import com.trips.service.CarService;
 
 @Service
-@Transactional("hibernateTransactionManager")
+@Transactional
+@Qualifier("hibernateTransactionManager")
 public class CarServiceImpl implements CarService {
 	
 	@Autowired
@@ -40,6 +43,11 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public void removeCar(int id) {
 		carDao.removeCar(id);
+	}
+
+	@Override
+	public PaginationUtil<Car> paging(int currentPage) {
+		return new PaginationUtil<Car>(carDao.getQuery(), currentPage);
 	}
 
 }

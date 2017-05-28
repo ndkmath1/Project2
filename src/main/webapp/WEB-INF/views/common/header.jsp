@@ -12,8 +12,8 @@
 					<li><a href="#"> <i class="glyphicon glyphicon-screenshot"></i>
 							Các trạm
 					</a></li>
-					<li><a href="#"> <i class="glyphicon glyphicon-time"></i>
-							Lịch trình
+					<li><a href="/week-schedule/list"> <i class="glyphicon glyphicon-time"></i>
+							Lịch chạy
 					</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -39,7 +39,7 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="${pageContext.request.contextPath}">TRIPS</a>
+							<a class="navbar-brand" href="/">TRIPS</a>
 						</div>
 						<div class="collapse navbar-collapse" id="myNavbar">
 							<ul class="nav navbar-nav navbar-right navbar-nav-custom">
