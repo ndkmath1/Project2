@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trips.service.WeekScheduleService;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,5 +36,16 @@ public class WeekScheduleServiceImpl implements WeekScheduleService {
     public Map<Integer, List<WeekSchedule>> getWeekSchedule() {
         return weekScheduleDao.getWeekSchedule();
     }
+
+    @Override
+    public WeekSchedule getWeekScheduleId(int id) {
+        return weekScheduleDao.getWeekScheduleId(id);
+    }
+
+    @Override
+    public List<WeekSchedule> findWeekSchedule(Integer routeId, Date date) {
+        return weekScheduleDao.findWeekSchedule(routeId, date);
+    }
+
 
 }

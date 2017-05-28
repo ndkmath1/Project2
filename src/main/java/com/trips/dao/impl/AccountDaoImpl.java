@@ -19,7 +19,7 @@ public class AccountDaoImpl implements AccountDao {
 	public Query getQueryAccountList() {
 		return sessionFactory
 				.getCurrentSession()
-				.createQuery("from Account a order by a.accountId asc");
+				.createQuery("from Account a order by a.accountId desc");
 	}
 
 }

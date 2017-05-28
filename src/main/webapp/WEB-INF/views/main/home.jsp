@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.trips.util.DateTimeUtil"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -67,9 +67,8 @@
 									src="${pageContext.request.contextPath}/resources/images/limousine-1.jpg"
 									alt=''>
 								<div class="carousel-caption">
-									<h3>Chania</h3>
-									<p>The atmosphere in Chania has a touch of Florence and
-										Venice.</p>
+									<h3>Limousine 9 chỗ</h3>
+									<p>Dịch vụ tốt nhất hiện nay.</p>
 								</div>
 							</div>
 							<div class="item">
@@ -77,9 +76,8 @@
 									src="${pageContext.request.contextPath}/resources/images/limousine-2.jpg"
 									alt=''>
 								<div class="carousel-caption">
-									<h3>Chania</h3>
-									<p>The atmosphere in Chania has a touch of Florence and
-										Venice.</p>
+									<h3>Limousine 9 chỗ</h3>
+									<p>Dịch vụ tốt nhất hiện nay.</p>
 								</div>
 							</div>
 							<div class="item">
@@ -87,9 +85,8 @@
 									src="${pageContext.request.contextPath}/resources/images/limousine-3.jpg"
 									alt=''>
 								<div class="carousel-caption">
-									<h3>Chania</h3>
-									<p>The atmosphere in Chania has a touch of Florence and
-										Venice.</p>
+									<h3>Limousine 9 chỗ</h3>
+									<p>Dịch vụ tốt nhất hiện nay.</p>
 								</div>
 							</div>
 							<div class="item">
@@ -97,9 +94,8 @@
 									src="${pageContext.request.contextPath}/resources/images/limousine-4.jpg"
 									alt=''>
 								<div class="carousel-caption">
-									<h3>Chania</h3>
-									<p>The atmosphere in Chania has a touch of Florence and
-										Venice.</p>
+									<h3>Limousine 9 chỗ</h3>
+									<p>Dịch vụ tốt nhất hiện nay.</p>
 								</div>
 							</div>
 						</div>
@@ -120,40 +116,50 @@
 					<div class="booking shadow-all">
 						<div class="booking-content">
 							<h4 class="booking-title">Đặt chỗ trực tuyến</h4>
-							<form class="form" name="bookingForm" method="POST" action="">
+							<form class="form" name="bookingForm" method="get" action="/search-schedule">
 								<div class="row">
-									<div class="col-xs-6">
+									<div class="col-xs-12">
 										<div class="form-group">
-											<label for="select-origin">Điểm khởi hành</label>
+											<label for="select-origin">Điểm khởi hành - Điểm đến</label>
 											<div class="controls">
 												<!--<i class="fa fa-bus text-primary"></i>-->
-												<select name="selectOrigin" id="select-origin"
+												<select name="routeId" id="select-origin"
 													class="selectpicker" data-live-search="true"
 													data-width="100%">
-													<option data-tokens="Hà Nội">Hà Nội</option>
-													<option data-tokens="TP. Hồ Chí Minh">TP. Hồ Chí
-														Minh</option>
-													<option data-tokens="Đà Nẵng">Đà Nẵng</option>
+													<c:forEach items="${routeList}" var="item" varStatus="i">
+														<option data-tokens="${i.count}. ${item.origin} - ${item.destination}" value="${item.routeId}">
+														${i.count}. ${item.origin} - ${item.destination}
+														</option>
+
+														<%--<option data-tokens="${i.count}. ${item.destination} - ${item.origin}">--%>
+																<%--${i.count}. ${item.origin} - ${item.destination}--%>
+														<%--</option>--%>
+														<%--<option data-tokens="">${item.origin} - ${item.destination}</option>--%>
+													</c:forEach>
+													<%--<option data-tokens="TP. Hồ Chí Minh">TP. Hồ Chí--%>
+														<%--Minh</option>--%>
+													<%--<option data-tokens="Đà Nẵng">Đà Nẵng</option>--%>
 												</select>
+												<%--<input type="hidden" value="" name="routeId" id="routeId">--%>
 											</div>
 										</div>
 									</div>
-									<div class="col-xs-6">
-										<div class="form-group">
-											<label for="select-destination">Điểm đến</label>
-											<div class="controls">
-												<!--<i class="fa fa-bus text-primary"></i>-->
-												<select name="selectDestination" id="select-destination"
-													class="selectpicker" data-live-search="true"
-													data-width="100%">
-													<option data-tokens="Hà Nội">Hà Nội</option>
-													<option data-tokens="TP. Hồ Chí Minh">TP. Hồ Chí
-														Minh</option>
-													<option data-tokens="Đà Nẵng">Đà Nẵng</option>
-												</select>
-											</div>
-										</div>
-									</div>
+									<%--<div class="col-xs-6">--%>
+										<%--<div class="form-group">--%>
+											<%--<label for="select-destination">Điểm đến</label>--%>
+											<%--<div class="controls">--%>
+												<%--<!--<i class="fa fa-bus text-primary"></i>-->--%>
+												<%--<select name="selectDestination" id="select-destination"--%>
+													<%--class="selectpicker" data-live-search="true"--%>
+													<%--data-width="100%">--%>
+													<%--<option data-tokens="Hà Nội">Hà Nội</option>--%>
+													<%--<option data-tokens="TP. Hồ Chí Minh">TP. Hồ Chí--%>
+														<%--Minh</option>--%>
+													<%--<option data-tokens="Đà Nẵng">Đà Nẵng</option>--%>
+												<%--</select>--%>
+											<%--</div>--%>
+										<%--</div>--%>
+									<%--</div>--%>
 								</div>
 								<div class="row">
 									<div class="col-xs-6">
@@ -182,7 +188,7 @@
 									</div>
 								</div>
 								<div class="row">
-									<button class="btn btn-primary" type="submit">Đặt vé</button>
+									<button class="btn btn-primary" type="submit">Tìm chuyến</button>
 								</div>
 							</form>
 						</div>

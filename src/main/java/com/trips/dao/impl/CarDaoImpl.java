@@ -69,7 +69,7 @@ public class CarDaoImpl implements CarDao {
 
 	@Override
 	public Query getQuery() {
-		return sessionFactory.getCurrentSession().createQuery("from Car");
+		return sessionFactory.getCurrentSession().createQuery("from Car c order by c.carId desc");
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.trips.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +74,24 @@ public class WeekScheduleDaoImpl implements WeekScheduleDao {
 			m.put(i, q.list());
 		}
 		return m;
+	}
+
+	@Override
+	public WeekSchedule getWeekScheduleId(int id) {
+		Query q = sessionFactory
+				.getCurrentSession()
+				.createQuery("from WeekSchedule w where w.weekScheduleId=:id").setParameter("id", id);
+		return (WeekSchedule) q.uniqueResult();
+	}
+
+	@Override
+	public List<WeekSchedule> findWeekSchedule(Integer routeId, Date date) {
+		Query q = sessionFactory.getCurrentSession()
+				.createQuery("from WeekSchedule w where w.route.routeId = :routeId and w.dateTime >= :begin and w.dateTime < :end")
+				.setParameter("routeId", routeId)
+				.setDate("begin", date)
+				.setDate("end", DateTimeUtil.addDays(date, 1));
+		return q.list();
 	}
 
 }

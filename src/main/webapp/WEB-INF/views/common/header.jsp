@@ -3,7 +3,7 @@
 		<nav class="navbar navbar-top">
 			<div class="container">
 				<ul class="nav navbar-nav">
-					<li><a href="${pageContext.request.contextPath}"> <i class="glyphicon glyphicon-check"></i>
+					<li><a href="/"> <i class="glyphicon glyphicon-check"></i>
 							Đặt vé
 					</a></li>
 					<li><a href="#"> <i class="glyphicon glyphicon-share"></i>

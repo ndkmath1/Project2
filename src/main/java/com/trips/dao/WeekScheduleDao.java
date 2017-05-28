@@ -1,5 +1,6 @@
 package com.trips.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,5 +22,9 @@ public interface WeekScheduleDao {
 	public Query getQuery();
 
 	public Map<Integer, List<WeekSchedule>> getWeekSchedule();
+
+	public WeekSchedule getWeekScheduleId(int id);
+
+	public List<WeekSchedule> findWeekSchedule(Integer routeId, Date date);
 	
 }

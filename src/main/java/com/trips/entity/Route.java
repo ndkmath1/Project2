@@ -111,7 +111,7 @@ public class Route implements java.io.Serializable {
 		this.minute = minute;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	@OneToMany(mappedBy = "route")
 	public Set<StopPoint> getStopPoints() {
 		return this.stopPoints;
 	}
@@ -120,7 +120,7 @@ public class Route implements java.io.Serializable {
 		this.stopPoints = stopPoints;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	@OneToMany(mappedBy = "route")
 	public Set<Bill> getBills() {
 		return this.bills;
 	}
@@ -129,7 +129,7 @@ public class Route implements java.io.Serializable {
 		this.bills = bills;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	@OneToMany(mappedBy = "route")
 	public Set<WeekSchedule> getWeekSchedules() {
 		return this.weekSchedules;
 	}
@@ -138,7 +138,7 @@ public class Route implements java.io.Serializable {
 		this.weekSchedules = weekSchedules;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	@OneToMany(mappedBy = "route")
 	public Set<Station> getStations() {
 		return this.stations;
 	}
@@ -147,7 +147,7 @@ public class Route implements java.io.Serializable {
 		this.stations = stations;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	@OneToMany(mappedBy = "route")
 	public Set<ScheduleControl> getScheduleControls() {
 		return this.scheduleControls;
 	}

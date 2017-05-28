@@ -36,57 +36,34 @@
     <div class="container">
         <div class="panel-group">
             <div class="panel panel-default">
-                <div class="panel-heading">Lịch chạy tuần</div>
+                <div class="panel-heading">Thông tin chuyến</div>
                 <div class="panel-body">
-                    <ul class="nav nav-tabs">
-                        <c:forEach items="${map}" var="item1" begin="0" end="6" varStatus="i">
-                            <li class="${i.count == 1 ? 'active' : ''}">
-                                <a data-toggle="tab" href="#menu${i.count}">
-                                    <c:forEach var="day" items="${item1.value}" begin="1" end="1">
-                                        <fmt:formatDate pattern="E" value="${day.dateTime}"/>
-                                    </c:forEach>
-                                </a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-
-                    <div class="tab-content">
-                        <c:forEach items="${map}" var="item2" begin="0" end="6" varStatus="j">
-                            <div id="menu${j.count}" class="tab-pane fade in${j.count == 1 ? ' active' : ''}">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Điểm đầu</th>
-                                        <th>Điểm cuối</th>
-                                        <th>Loại xe</th>
-                                        <th>Biển số</th>
-                                        <th>Ngày</th>
-                                        <th>Giờ</th>
-                                        <th>Đặt vé</th>
-                                    </tr>
-                                    </thead>
-                                    <c:set var="count" value="${0}"/>
-                                    <tbody>
-                                    <c:forEach items="${item2.value}" var="item3">
-                                        <tr>
-                                            <c:set var="count" value="${count + 1}"/>
-                                            <td>${count}</td>
-                                            <td>${item3.route.origin}</td>
-                                            <td>${item3.route.destination}</td>
-                                            <td>${item3.car.carType}</td>
-                                            <td>${item3.car.licensePlate}</td>
-                                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${item3.dateTime}"/></td>
-                                            <td><fmt:formatDate pattern="HH:mm:ss" value="${item3.dateTime}"/></td>
-                                            <td><a class="btn btn-primary" href="/booking-ticket?ws=${item3.weekScheduleId}">Đặt vé</a></td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </c:forEach>
-                        <%--</div>--%>
-                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Điểm đầu</th>
+                            <th>Điểm cuối</th>
+                            <th>Loại xe</th>
+                            <th>Biển số</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                        </tr>
+                        </thead>
+                        <c:set var="count" value="${0}"/>
+                        <tbody>
+                            <tr>
+                                <c:set var="count" value="${count + 1}"/>
+                                <td>${count}</td>
+                                <td>${weekSchedule.route.origin}</td>
+                                <td>${weekSchedule.route.destination}</td>
+                                <td>${weekSchedule.car.carType}</td>
+                                <td>${weekSchedule.car.licensePlate}</td>
+                                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${weekSchedule.dateTime}"/></td>
+                                <td><fmt:formatDate pattern="HH:mm:ss" value="${weekSchedule.dateTime}"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

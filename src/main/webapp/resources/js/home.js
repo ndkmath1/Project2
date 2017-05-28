@@ -3,7 +3,15 @@
  */
 $(function () {
     $('#select-date').datepicker({
-    	startDate: '+1d',
-    	endDate: '+7d'
+    	startDate: '+2d',
+    	endDate: '+8d'
     });
+
+    $("#routeId").attr("value", $("#select-origin option:selected").attr("value"));
+    $("#select-origin").on("change", function() {
+        var optionSelected = $(this).find("option:selected");
+        $("#routeId").attr("value", optionSelected.attr("value"));
+
+    });
+
 });
