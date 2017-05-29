@@ -3,8 +3,8 @@
  */
 $(function () {
     $('#select-date').datepicker({
-    	startDate: '+2d',
-    	endDate: '+8d'
+    	startDate: '+1d',
+    	endDate: '+7d'
     });
 
     $("#routeId").attr("value", $("#select-origin option:selected").attr("value"));

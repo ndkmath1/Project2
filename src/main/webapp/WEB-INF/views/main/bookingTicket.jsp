@@ -23,6 +23,21 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/css/loader.css">
     <script src="${pageContext.request.contextPath}/resources/js/loader.js"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.vi.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
 </head>
 
 <body>
@@ -46,6 +61,8 @@
                             <th>Điểm cuối</th>
                             <th>Loại xe</th>
                             <th>Biển số</th>
+                            <th>Giá ghế loại 1</th>
+                            <th>Giá ghế loại 2</th>
                             <th>Ngày</th>
                             <th>Giờ</th>
                         </tr>
@@ -59,11 +76,98 @@
                                 <td>${weekSchedule.route.destination}</td>
                                 <td>${weekSchedule.car.carType}</td>
                                 <td>${weekSchedule.car.licensePlate}</td>
+                                <td>${weekSchedule.route.costSeatType1}</td>
+                                <td>${weekSchedule.route.costSeatType2}</td>
                                 <td><fmt:formatDate pattern="dd/MM/yyyy" value="${weekSchedule.dateTime}"/></td>
                                 <td><fmt:formatDate pattern="HH:mm:ss" value="${weekSchedule.dateTime}"/></td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <form method="get" action="/booking-ticket-processing" class="form-group">
+                        <input type="hidden" value="${weekSchedule.weekScheduleId}" name="ws">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="panel-group">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <div>Thông tin đặt vé</div>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-5 col-md-offset-1">
+                                                    <label>Trạm đầu</label>
+                                                    <select name="stationIdFirst"
+                                                            class="selectpicker" data-live-search="true"
+                                                            data-width="100%">
+                                                        <c:forEach items="${stationList}" var="station">
+                                                            <c:if test="${station.order == 1}">
+                                                                <option data-tokens="${station.stationName}" value="${station.stationId}">${station.stationName}</option>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </select>
+                                                    <label>Điểm đón</label>
+                                                    <input type="text" name="cusStartPoint" class="form-control">
+                                                    <label>Tên</label>
+                                                    <input type="text" name="name" class="form-control" required="required">
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <label>Trạm cuối</label>
+                                                    <select name="stationIdLast"
+                                                            class="selectpicker" data-live-search="true"
+                                                            data-width="100%">
+                                                        <c:forEach items="${stationList}" var="station">
+                                                            <c:if test="${station.order == 2}">
+                                                                <option data-tokens="${station.stationName}" value="${station.stationId}">${station.stationName}</option>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </select>
+                                                    <label>Điểm đưa</label>
+                                                    <input type="text" name="cusEndPoint" class="form-control">
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" name="phoneNumber" class="form-control" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-4">
+                                                    <label>Loại ghế</label>
+                                                    <select name="seatType"
+                                                            class="selectpicker" data-live-search="true"
+                                                            data-width="100%">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 20px;">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <div class="list-group">
+                                                        <a href="#" class="list-group-item disabled">Lộ trình</a>
+                                                        <c:forEach items="${stopPointList}" var="stopPoint">
+                                                            <a href="#" class="list-group-item">${stopPoint.stopPointName}</a>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-md-offset-1">
+                                                    <i><b>Chú ý</b>: Nhà xe hỗ trợ đưa đón trong phạm vi 10km kể từ các trạm đầu và trạm cuối
+                                                        , quý khách vui lòng chọn trạm và nhậm điểm đưa, đón để được hỗ trợ</i>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top: 30px">
+                                                <div class="col-md-offset-9">
+                                                    <button type="submit" class="btn btn-primary">Đặt vé</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>

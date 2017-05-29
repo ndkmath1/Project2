@@ -68,7 +68,7 @@ public class Driver implements java.io.Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	@OneToMany(mappedBy = "driver")
 	public Set<Car> getCars() {
 		return this.cars;
 	}
@@ -77,7 +77,7 @@ public class Driver implements java.io.Serializable {
 		this.cars = cars;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	@OneToMany(mappedBy = "driver")
 	public Set<Bill> getBills() {
 		return this.bills;
 	}
@@ -86,7 +86,7 @@ public class Driver implements java.io.Serializable {
 		this.bills = bills;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	@OneToMany(mappedBy = "driver")
 	public Set<ScheduleControl> getScheduleControls() {
 		return this.scheduleControls;
 	}

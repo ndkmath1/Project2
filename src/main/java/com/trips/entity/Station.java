@@ -56,7 +56,7 @@ public class Station implements java.io.Serializable {
 		this.stationId = stationId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "route_id")
 	public Route getRoute() {
 		return this.route;
@@ -84,7 +84,7 @@ public class Station implements java.io.Serializable {
 		this.order = order;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdLast")
+	@OneToMany(mappedBy = "stationByStationIdLast")
 	public Set<Bill> getBillsForStationIdLast() {
 		return this.billsForStationIdLast;
 	}
@@ -93,7 +93,7 @@ public class Station implements java.io.Serializable {
 		this.billsForStationIdLast = billsForStationIdLast;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdFirst")
+	@OneToMany(mappedBy = "stationByStationIdFirst")
 	public Set<Bill> getBillsForStationIdFirst() {
 		return this.billsForStationIdFirst;
 	}

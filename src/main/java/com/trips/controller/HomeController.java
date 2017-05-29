@@ -37,18 +37,18 @@ public class HomeController {
 		try {
 			int rId = Integer.parseInt(routeId);
 			Date d = DateTimeUtil.stringToDate(date);
-//			redirectAttributes.addAttribute("resultList", weekScheduleService.findWeekSchedule(rId, d));
-//			return "redirect:/search-result";
-			model.addAttribute("resultList", weekScheduleService.findWeekSchedule(rId, d));
-			return "main/searchResult";
+			redirectAttributes.addFlashAttribute("resultList", weekScheduleService.findWeekSchedule(rId, d));
+			return "redirect:/search-result";
+//			model.addAttribute("resultList", weekScheduleService.findWeekSchedule(rId, d));
+//			return "main/searchResult";
 		} catch (Exception e) {
 			return homeUrl;
 		}
 	}
 
-//	@GetMapping("/search-result")
-//	public String searchResult() {
-//		return "main/searchResult";
-//	}
+	@GetMapping("/search-result")
+	public String searchResult() {
+		return "main/searchResult";
+	}
 	
 }

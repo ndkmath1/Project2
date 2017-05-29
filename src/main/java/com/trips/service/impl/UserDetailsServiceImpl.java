@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		// }
 		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		System.out.println("### MyLog:  Set role for admin success!");
-		return new CustomUser(account.getEmail(), account.getPassword(), grantedAuthorities, account.getName());
+		return new CustomUser(account.getEmail(), account.getPassword(), grantedAuthorities, account.getName(), account);
 	}
 
 }

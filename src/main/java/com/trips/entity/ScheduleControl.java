@@ -47,7 +47,7 @@ public class ScheduleControl implements java.io.Serializable {
 		this.scheduleId = scheduleId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "car_id", nullable = false)
 	public Car getCar() {
 		return this.car;
@@ -57,7 +57,7 @@ public class ScheduleControl implements java.io.Serializable {
 		this.car = car;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "driver_id", nullable = false)
 	public Driver getDriver() {
 		return this.driver;
@@ -67,7 +67,7 @@ public class ScheduleControl implements java.io.Serializable {
 		this.driver = driver;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "route_id", nullable = false)
 	public Route getRoute() {
 		return this.route;

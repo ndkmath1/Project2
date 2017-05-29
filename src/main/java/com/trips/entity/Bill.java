@@ -32,17 +32,20 @@ public class Bill implements java.io.Serializable {
 	private String customerPhone;
 	private String cusStartPoint;
 	private String cusEndPoint;
-	private String ticket;
+//	private String ticket;
 	private Byte status;
+	private WeekSchedule weekSchedule;
+	private Byte seatType;
 
 	public Bill() {
 	}
 
-	public Bill(Car car, Driver driver, Route route, Date dateTime, String customerName, String customerPhone,
+	public Bill(Car car, Driver driver, Route route, WeekSchedule weekSchedule, Date dateTime, String customerName, String customerPhone,
 			String cusStartPoint, String cusEndPoint) {
 		this.car = car;
 		this.driver = driver;
 		this.route = route;
+		this.weekSchedule = weekSchedule;
 		this.dateTime = dateTime;
 		this.customerName = customerName;
 		this.customerPhone = customerPhone;
@@ -50,12 +53,13 @@ public class Bill implements java.io.Serializable {
 		this.cusEndPoint = cusEndPoint;
 	}
 
-	public Bill(Car car, Driver driver, Route route, Station stationByStationIdLast, Station stationByStationIdFirst,
+	public Bill(Car car, Driver driver, Route route, WeekSchedule weekSchedule, Station stationByStationIdLast, Station stationByStationIdFirst,
 			Date dateTime, String customerName, String customerPhone, String cusStartPoint, String cusEndPoint,
-			String ticket, Byte status) {
+			Byte status) {
 		this.car = car;
 		this.driver = driver;
 		this.route = route;
+		this.weekSchedule = weekSchedule;
 		this.stationByStationIdLast = stationByStationIdLast;
 		this.stationByStationIdFirst = stationByStationIdFirst;
 		this.dateTime = dateTime;
@@ -63,7 +67,7 @@ public class Bill implements java.io.Serializable {
 		this.customerPhone = customerPhone;
 		this.cusStartPoint = cusStartPoint;
 		this.cusEndPoint = cusEndPoint;
-		this.ticket = ticket;
+//		this.ticket = ticket;
 		this.status = status;
 	}
 
@@ -79,7 +83,17 @@ public class Bill implements java.io.Serializable {
 		this.billId = billId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name = "week_schedule_id", nullable = false)
+	public WeekSchedule getWeekSchedule() {
+		return weekSchedule;
+	}
+
+	public void setWeekSchedule(WeekSchedule weekSchedule) {
+		this.weekSchedule = weekSchedule;
+	}
+
+	@ManyToOne
 	@JoinColumn(name = "car_id", nullable = false)
 	public Car getCar() {
 		return this.car;
@@ -89,7 +103,7 @@ public class Bill implements java.io.Serializable {
 		this.car = car;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "driver_id", nullable = false)
 	public Driver getDriver() {
 		return this.driver;
@@ -99,7 +113,7 @@ public class Bill implements java.io.Serializable {
 		this.driver = driver;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "route_id", nullable = false)
 	public Route getRoute() {
 		return this.route;
@@ -109,7 +123,7 @@ public class Bill implements java.io.Serializable {
 		this.route = route;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "station_id_last")
 	public Station getStationByStationIdLast() {
 		return this.stationByStationIdLast;
@@ -119,7 +133,7 @@ public class Bill implements java.io.Serializable {
 		this.stationByStationIdLast = stationByStationIdLast;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "station_id_first")
 	public Station getStationByStationIdFirst() {
 		return this.stationByStationIdFirst;
@@ -175,14 +189,14 @@ public class Bill implements java.io.Serializable {
 		this.cusEndPoint = cusEndPoint;
 	}
 
-	@Column(name = "ticket", length = 45)
-	public String getTicket() {
-		return this.ticket;
-	}
-
-	public void setTicket(String ticket) {
-		this.ticket = ticket;
-	}
+//	@Column(name = "ticket", length = 45)
+//	public String getTicket() {
+//		return this.ticket;
+//	}
+//
+//	public void setTicket(String ticket) {
+//		this.ticket = ticket;
+//	}
 
 	@Column(name = "status")
 	public Byte getStatus() {
@@ -191,6 +205,15 @@ public class Bill implements java.io.Serializable {
 
 	public void setStatus(Byte status) {
 		this.status = status;
+	}
+
+	@Column(name = "seat_type")
+	public Byte getSeatType() {
+		return this.seatType;
+	}
+
+	public void setSeatType(Byte seatType) {
+		this.seatType = seatType;
 	}
 
 }
