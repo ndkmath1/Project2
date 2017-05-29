@@ -15,6 +15,9 @@
 					<li><a href="/week-schedule/list"> <i class="glyphicon glyphicon-time"></i>
 							Lịch chạy
 					</a></li>
+					<li><a href="/check-bill"> <i class="glyphicon glyphicon-time"></i>
+						Kiểm tra đơn hàng
+					</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#"> <i class="glyphicon glyphicon-thumbs-up"></i>

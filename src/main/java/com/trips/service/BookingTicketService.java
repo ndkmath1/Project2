@@ -17,4 +17,6 @@ public interface BookingTicketService {
 
     public Bill booking(int wsId, String name, String phoneNumber, String cusStartPoint, String cusEndPoint, int stationIdFirst, int stationIdLast, int seatType);
 
+    public Bill getBillId(int id);
+
 }

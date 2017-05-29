@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -47,154 +49,117 @@
 </div>
 <div class="wrapper" style="display: none;">
     <%@ include file="../common/header.jsp"%>
+
+    <c:set var="bill" value="${bill}"/>
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div id="myCarousel" class="carousel slide text-center"
-                     data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                        <li data-target="#myCarousel" data-slide-to="3"></li>
-                    </ol>
+        <div class="alert alert-success">
+            <c:if test="${not empty bill}">
+                <c:if test="${bill.status == 1}">
+                    <strong>Thành công!</strong> Bạn đã đặt vé thành công
+                </c:if>
+                <c:if test="${bill.status != 1}">
+                    <strong>Đang chờ!</strong> Xe đã hết chỗ, đơn hàng đang chờ duyệt
+                </c:if>
+                <p>Mã đơn hàng của bạn là: ${bill.billId}</p>
+            </c:if>
+        </div>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img
-                                    src="${pageContext.request.contextPath}/resources/images/limousine-1.jpg"
-                                    alt=''>
-                            <div class="carousel-caption">
-                                <h3>Limousine 9 chỗ</h3>
-                                <p>Dịch vụ tốt nhất hiện nay.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img
-                                    src="${pageContext.request.contextPath}/resources/images/limousine-2.jpg"
-                                    alt=''>
-                            <div class="carousel-caption">
-                                <h3>Limousine 9 chỗ</h3>
-                                <p>Dịch vụ tốt nhất hiện nay.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img
-                                    src="${pageContext.request.contextPath}/resources/images/limousine-3.jpg"
-                                    alt=''>
-                            <div class="carousel-caption">
-                                <h3>Limousine 9 chỗ</h3>
-                                <p>Dịch vụ tốt nhất hiện nay.</p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img
-                                    src="${pageContext.request.contextPath}/resources/images/limousine-4.jpg"
-                                    alt=''>
-                            <div class="carousel-caption">
-                                <h3>Limousine 9 chỗ</h3>
-                                <p>Dịch vụ tốt nhất hiện nay.</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">Thông tin đơn hàng</div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Tuyến</th>
+                            <th>Ngày đặt</th>
+                            <th>Trạm đầu</th>
+                            <th>Trạm cuối</th>
+                            <th>Tên</th>
+                            <th>Số điện thoại</th>
+                            <th>Ghế loại</th>
+                            <th>Giá vé</th>
+                            <th>Ngày</th>
+                            <th>Giờ</th>
+                            <th>Điểm đón</th>
+                            <th>Điểm đưa</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>${bill.billId}</td>
+                            <td>${bill.route.origin} - ${bill.route.destination}</td>
+                            <td><fmt:formatDate pattern="dd/MM/yyyy HH:mm:ss" value="${bill.dateTime}"/></td>
+                            <td>${bill.stationByStationIdFirst.stationName}</td>
+                            <td>${bill.stationByStationIdLast.stationName}</td>
+                            <td>${bill.customerName}</td>
+                            <td>${bill.customerPhone}</td>
+                            <td>${bill.seatType}</td>
+                            <td>
+                            <c:if test="${bill.seatType == 1}">
+                                ${bill.route.costSeatType1}
+                            </c:if>
+                            <c:if test="${bill.seatType != 1}">
+                                ${bill.route.costSeatType2}
+                            </c:if>
+                            </td>
+                            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${bill.weekSchedule.dateTime}"/></td>
+                            <td><fmt:formatDate pattern="HH:mm:ss" value="${bill.weekSchedule.dateTime}"/></td>
+                            <td>${bill.cusStartPoint}</td>
+                            <td>${bill.cusEndPoint}</td>
+                            <td>
+                                <c:if test="${bill.status == 1}">
+                                    Đặt thành công
+                                </c:if>
+                                <c:if test="${bill.status != 1}">
+                                    Đang chờ
+                                </c:if>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" role="button"
-                       data-slide="prev"> <span
-                            class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a> <a class="right carousel-control" href="#myCarousel"
-                            role="button" data-slide="next"> <span
-                        class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="booking shadow-all">
-                    <div class="booking-content">
-                        <h4 class="booking-title">Đặt chỗ trực tuyến</h4>
-                        <form class="form" name="bookingForm" method="get" action="/search-schedule">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="form-group">
-                                        <label for="select-origin">Điểm khởi hành - Điểm đến</label>
-                                        <div class="controls">
-                                            <!--<i class="fa fa-bus text-primary"></i>-->
-                                            <select name="routeId" id="select-origin"
-                                                    class="selectpicker" data-live-search="true"
-                                                    data-width="100%">
-                                                <c:forEach items="${routeList}" var="item" varStatus="i">
-                                                    <option data-tokens="${i.count}. ${item.origin} - ${item.destination}" value="${item.routeId}">
-                                                            ${i.count}. ${item.origin} - ${item.destination}
-                                                    </option>
-
-                                                    <%--<option data-tokens="${i.count}. ${item.destination} - ${item.origin}">--%>
-                                                    <%--${i.count}. ${item.origin} - ${item.destination}--%>
-                                                    <%--</option>--%>
-                                                    <%--<option data-tokens="">${item.origin} - ${item.destination}</option>--%>
-                                                </c:forEach>
-                                                <%--<option data-tokens="TP. Hồ Chí Minh">TP. Hồ Chí--%>
-                                                <%--Minh</option>--%>
-                                                <%--<option data-tokens="Đà Nẵng">Đà Nẵng</option>--%>
-                                            </select>
-                                            <%--<input type="hidden" value="" name="routeId" id="routeId">--%>
-                                        </div>
+                    <c:set var="car" value="${bill.car}"/>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Thông tin xe
                                     </div>
-                                </div>
-                                <%--<div class="col-xs-6">--%>
-                                <%--<div class="form-group">--%>
-                                <%--<label for="select-destination">Điểm đến</label>--%>
-                                <%--<div class="controls">--%>
-                                <%--<!--<i class="fa fa-bus text-primary"></i>-->--%>
-                                <%--<select name="selectDestination" id="select-destination"--%>
-                                <%--class="selectpicker" data-live-search="true"--%>
-                                <%--data-width="100%">--%>
-                                <%--<option data-tokens="Hà Nội">Hà Nội</option>--%>
-                                <%--<option data-tokens="TP. Hồ Chí Minh">TP. Hồ Chí--%>
-                                <%--Minh</option>--%>
-                                <%--<option data-tokens="Đà Nẵng">Đà Nẵng</option>--%>
-                                <%--</select>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="select-date">Ngày khỏi hành</label>
-                                        <div class="controls">
-                                            <!--<i class="fa fa-clock-o text-primary"></i>-->
-                                            <input id="select-date" name="selectDate"
-                                                   placeholder=" dd/mm/yyyy"
-                                                   class="form-control date-readonly" value="${nextDate}" readonly=""
-                                                   type="text" data-provide="datepicker"
-                                                   data-date-format="dd/mm/yyyy" style="cursor: pointer">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="num-ticket">Số lượng vé</label>
-                                        <div class="controls">
-                                            <!--<i class="fa fa-ticket text-primary"></i>-->
-                                            <input id="num-ticket" name="numOfTicket" placeholder="1"
-                                                   value="1" class="form-control" min="1" max="10"
-                                                   type="number" disabled>
-                                        </div>
+                                    <div class="panel-body">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Loại xe</th>
+                                                <th>Biển số</th>
+                                                <th>Số ghế loại 1</th>
+                                                <th>Số ghế loại 2</th>
+                                                <th>Tài xế</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>${car.carType}</td>
+                                                <td>${car.licensePlate}</td>
+                                                <td>${car.numSeatType1}</td>
+                                                <td>${car.numSeatType2}</td>
+                                                <td>${car.driver.driverName}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <button class="btn btn-primary" type="submit">Tìm chuyến</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="container">

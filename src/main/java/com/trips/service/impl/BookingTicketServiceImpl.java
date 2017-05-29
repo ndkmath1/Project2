@@ -3,6 +3,7 @@ package com.trips.service.impl;
 import com.trips.dao.*;
 import com.trips.entity.*;
 import com.trips.service.BookingTicketService;
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -76,7 +77,15 @@ public class BookingTicketServiceImpl implements BookingTicketService {
         bill.setStationByStationIdFirst(first);
         bill.setStationByStationIdLast(last);
         bill.setStatus((byte) billStatus);
+        bill.setWeekSchedule(weekSchedule);
         int result = billDao.saveBill(bill);
         return billDao.getBillId(result);
     }
+
+    @Override
+    public Bill getBillId(int id) {
+         return billDao.getBillId(id);
+    }
+
+
 }

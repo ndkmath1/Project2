@@ -60,8 +60,8 @@ public class BookingTicketController {
             int type = Integer.parseInt(seatType);
             int wsId = Integer.parseInt(ws);
             Bill bill = bookingTicketService.booking(wsId, name, phoneNumber, cusStartPoint, cusEndPoint, stationFirst, stationLast, type);
-            redirectAttributes.addFlashAttribute("bill", bill);
-            return "redirect:/booking-success";
+//            redirectAttributes.addFlashAttribute("bill", bill);
+            return "redirect:/booking-success?id=" + bill.getBillId();
         } catch (Exception e) {
 
         }
@@ -69,8 +69,21 @@ public class BookingTicketController {
     }
 
     @GetMapping("/booking-success")
-    public String success() {
-        return "main/bookingSuccess";
+    public String success(@RequestParam("id") String id, Model model) {
+        String redirectUrl = "/";
+        try {
+            int billId = Integer.parseInt(id);
+            model.addAttribute("bill", bookingTicketService.getBillId(billId));
+            return "main/bookingSuccess";
+        } catch (Exception e) {
+
+        }
+        return redirectUrl;
+    }
+
+    @GetMapping("/check-bill")
+    public String checkBill() {
+        return "main/checkInfoTicket";
     }
 
 }
