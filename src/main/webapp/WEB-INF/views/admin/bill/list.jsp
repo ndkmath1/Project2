@@ -44,7 +44,7 @@
                     <div class="pull-right">
                         <a href="<c:url value="/admin/account/create"/>"
                            class="btn btn-success"> <span
-                                class="glyphicon glyphicon-plus"></span> Thêm tài khoản mới
+                                class="glyphicon glyphicon-plus"></span> Thêm đơn hàng
                         </a>
                     </div>
                     <div class="pull-left">

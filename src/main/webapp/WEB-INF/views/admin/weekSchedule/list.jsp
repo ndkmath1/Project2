@@ -17,8 +17,8 @@
             <div class="list shadow-all">
                 <div id="creator-subheader">
                     <div class="creator-subheader-content">
-                        <h2>Danh sách tài khoản</h2>
-                        <span id="creator-subheader-item-count" class="badge-creator">100</span>
+                        <h2>Lịch chạy tuần</h2>
+                        <span id="creator-subheader-item-count" class="badge-creator" style="display: none;">100</span>
                     </div>
                     <div class="creator-subheader-controls">
                         <form action="<c:url value="/admin/account/search"/>"
@@ -43,7 +43,7 @@
                     <div class="pull-right">
                         <a href="<c:url value="/admin/account/create"/>"
                            class="btn btn-success"> <span
-                                class="glyphicon glyphicon-plus"></span> Thêm tài khoản mới
+                                class="glyphicon glyphicon-plus"></span> Thêm lịch
                         </a>
                     </div>
                     <div class="pull-left">
