@@ -103,6 +103,16 @@
 			</li>
 			<li>
 				<div class="left-nav-content-main">
+					<i class="glyphicon glyphicon-cog fa"></i> Quản lý đơn hàng <span
+						class="glyphicon glyphicon-chevron-down gl-right"></span>
+				</div>
+				<ul class="child-menu">
+					<li><a href="<c:url value="/admin/bill/list" />">Danh sách đơn hàng</a></li>
+					<li><a href="#">Thêm đơn hàng </a></li>
+				</ul>
+			</li>
+			<li>
+				<div class="left-nav-content-main">
 					<i class="glyphicon glyphicon-cog fa"></i> Quản lý tài xế <span
 						class="glyphicon glyphicon-chevron-down gl-right"></span>
 				</div>

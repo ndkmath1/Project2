@@ -46,5 +46,10 @@ public class BillDaoImpl implements BillDao {
         return (Bill) q.uniqueResult();
     }
 
+    @Override
+    public Query getQuery() {
+        return sessionFactory.getCurrentSession().createQuery("from Bill b order by b.billId desc ");
+    }
+
 
 }

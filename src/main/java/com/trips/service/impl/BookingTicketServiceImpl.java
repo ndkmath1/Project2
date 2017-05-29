@@ -3,6 +3,7 @@ package com.trips.service.impl;
 import com.trips.dao.*;
 import com.trips.entity.*;
 import com.trips.service.BookingTicketService;
+import com.trips.util.PaginationUtil;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -85,6 +86,11 @@ public class BookingTicketServiceImpl implements BookingTicketService {
     @Override
     public Bill getBillId(int id) {
          return billDao.getBillId(id);
+    }
+
+    @Override
+    public PaginationUtil<Bill> paging(int currentPage) {
+        return new PaginationUtil<Bill>(billDao.getQuery(), currentPage);
     }
 
 
